@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Game10x10 {
 
+    Testing testing = new Testing();
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
 
@@ -15,9 +16,19 @@ public class Game10x10 {
             correct = false;
             System.out.println("\n" + symbol + " - Twój ruch");
             System.out.println("Podaj index wiersza:");
-            int wiersz = scanner.nextInt();
+            String wierszString = scanner.next();
+            while(testing.isNumeric(wierszString) == false || testing.isZerotoNine(wierszString) == false){
+                System.out.println("Wpisana wartość musi być cyfrą od 0 do 9");
+                wierszString = scanner.next();
+            }
+            int wiersz = Integer.parseInt(wierszString);
             System.out.println("Podaj index kolumny:");
-            int kolumna = scanner.nextInt();
+            String kolumnaString = scanner.next();
+            while(testing.isNumeric(kolumnaString) == false || testing.isZerotoNine(kolumnaString) == false){
+                System.out.println("Wpisana wartość musi być cyfrą od 0 do 9");
+                kolumnaString = scanner.next();
+            }
+            int kolumna = Integer.parseInt(kolumnaString);
             boolean correctMove = plansza[wiersz][kolumna] == 0;
             if(!correctMove){
                 System.out.println("-----------------");

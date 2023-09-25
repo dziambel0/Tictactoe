@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Game {
 
+    Testing testing = new Testing();
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
 
@@ -15,13 +16,24 @@ public class Game {
             correct = false;
             System.out.println("\n" + symbol + " - Twój ruch");
             System.out.println("Podaj index wiersza:");
-            int wiersz = scanner.nextInt();
+            String wierszString = scanner.next();
+            while(testing.isNumeric(wierszString) == false || testing.isZerotoTwo(wierszString) == false){
+                System.out.println("Wpisana wartość musi być cyfrą od 0 do 2");
+                wierszString = scanner.next();
+            }
+            int wiersz = Integer.parseInt(wierszString);
             System.out.println("Podaj index kolumny:");
-            int kolumna = scanner.nextInt();
+            String kolumnaString = scanner.next();
+            while(testing.isNumeric(kolumnaString) == false || testing.isZerotoTwo(kolumnaString) == false){
+                System.out.println("Wpisana wartość musi być cyfrą od 0 do 2");
+                kolumnaString = scanner.next();
+            }
+            int kolumna = Integer.parseInt(kolumnaString);
             boolean correctMove = plansza[wiersz][kolumna] == 0;
             if(!correctMove){
                 System.out.println("-----------------");
                 System.out.println("Nie poprawny ruch");
+                printBoard(plansza, 3);
                 correct = true;
                 continue;
             }

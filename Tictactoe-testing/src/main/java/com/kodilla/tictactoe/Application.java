@@ -17,7 +17,7 @@ public class Application {
         int wymiar = 3;
         int wymiar2 = 10;
         String wyborGry = "";
-        int wyborWersji = 1;
+        String wyborWersji = "";
 
         int wygranaX = 0;
         int wygranaO = 0;
@@ -38,16 +38,19 @@ public class Application {
                 System.out.println("Wpisana wartość musi być cyfrą od 1 do 4");
                 wyborGry = scanner.next();
             }
-
             if (wyborGry.equals("1")){
                 System.out.println("Wybierz wymier planszy:");
                 System.out.println("PLANSZA 3x3 - wybierz 1");
                 System.out.println("PLANSZA 10x10 - wybierz 2");
-                wyborWersji = scanner.nextInt();
-                if (wyborWersji == 1){
+                wyborWersji = scanner.next();
+                while(testing.isNumeric(wyborWersji) == false || testing.isOnetoTwo(wyborWersji) == false){
+                    System.out.println("Wpisana wartość musi być cyfrą od 1 do 2");
+                    wyborWersji = scanner.next();
+                }
+                if (wyborWersji.equals("1")){
                     char[][] board = new char[wymiar][wymiar];
                     wygrana = gameUserUser.gameWithUser(board,symbol,wymiar);
-                } else if (wyborWersji == 2) {
+                } else if (wyborWersji.equals("2")) {
                     char[][] board = new char[wymiar2][wymiar2];
                     wygrana = gameUserUser10x10.gameWithUser(board,symbol,wymiar2);
                 }
@@ -55,11 +58,15 @@ public class Application {
                 System.out.println("Wybierz wymier planszy:");
                 System.out.println("PLANSZA 3x3 - wybierz 1");
                 System.out.println("PLANSZA 10x10 - wybierz 2");
-                wyborWersji = scanner.nextInt();
-                if(wyborWersji == 1){
+                wyborWersji = scanner.next();
+                while(testing.isNumeric(wyborWersji) == false || testing.isOnetoTwo(wyborWersji) == false){
+                    System.out.println("Wpisana wartość musi być cyfrą od 1 do 2");
+                    wyborWersji = scanner.next();
+                }
+                if(wyborWersji.equals("1")){
                     char[][] board = new char[wymiar][wymiar];
                     wygrana = gameUserComputer.gameWithComputer(board,symbol,wymiar);
-                } else if (wyborWersji == 2) {
+                } else if (wyborWersji.equals("2")) {
                     char[][] board = new char[wymiar2][wymiar2];
                     wygrana = gameUserComputer10x10.gameWithComputer(board,symbol,wymiar2);
                 }
